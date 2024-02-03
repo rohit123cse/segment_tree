@@ -29,7 +29,7 @@ class maxrangeds{
   }
   int query(int index,int low,int high,int const &reqlow,int const &reqhigh){
     if(low==high){
-      if(reqlow<=low&&reqhigh>=low)return tree[index];
+      if(reqlow<=low&&reqhigh>=high)return tree[index];
       else return INT_MAX;
     }
     if(reqlow<=low&&reqhigh>=high)return tree[index];
