@@ -1,5 +1,3 @@
-#include<bits/stdc++.h>
-using namespace std;
 class sumrangeds{
   vector<int>tree;
   int size;
@@ -26,7 +24,7 @@ class sumrangeds{
     size=vec.size();
     buildtree(0,0,vec.size()-1,vec);
   }
-  int query(int index,int low,int high,int const &reqlow,int const &reqhigh){
+  int qhelper(int index,int low,int high,int const &reqlow,int const &reqhigh){
     if(low==high){
       if(reqlow<=low&&reqhigh>=low)return tree[index];
       else return 0;
@@ -34,7 +32,10 @@ class sumrangeds{
     if(reqlow<=low&&reqhigh>=high)return tree[index];
     if(high<reqlow||low>reqhigh)return 0;
     int mid=(low+high)/2;
-    return (query(2*index+1,low,mid,reqlow,reqhigh)+query(2*index+2,mid+1,high,reqlow,reqhigh));
+    return (qhelper(2*index+1,low,mid,reqlow,reqhigh)+qhelper(2*index+2,mid+1,high,reqlow,reqhigh));
+  }
+  int query(int low,int high){
+    return qhelper(0,0,size-1,low,high);
   }
   void pointupdate(int const &updateindex,int index,int low,int high,int const &val){
     if(low==high){
@@ -49,13 +50,3 @@ class sumrangeds{
     return;
   }
 };
-int main(){
-  
-
-
-
-
-
-
-return 0;
-}
